@@ -49,3 +49,19 @@ body[data-reader-theme="sepia"]{--reader-bg:#ece3ce;--reader-ink:#554b3b}body[da
 .reader .word-card.expanded .dock-compact .word-meaning{white-space:normal}
 }
 @media not ((orientation:landscape) and (min-width:600px)){.reader .pdf-area{padding-bottom:0}}
+
+/* v3.5 · word list layouts */
+.reader .chapter-content{will-change:transform;backface-visibility:hidden}
+@media not ((orientation:landscape) and (min-width:600px)){
+.reader .page-word-item{display:flex;align-items:baseline;gap:8px;padding:11px 12px;white-space:nowrap}
+.reader .page-word-item strong{flex:none;font-size:15px;font-weight:600}
+.reader .page-word-item .page-word-ph{flex:none;font-size:12px;margin:0}
+.reader .page-word-item span{flex:1;min-width:0;font-size:13px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:unset}
+}
+@media (orientation:landscape) and (min-width:600px){
+.reader:not(.pdf-mode) .word-card,.reader:not(.pdf-mode) .word-card.hidden{display:flex!important;flex-direction:column;overflow:hidden}
+.reader #dockExpand,.reader #wordClose{display:none}
+.reader .word-card .dock-expanded{display:block!important;flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;margin-top:8px;overscroll-behavior:contain}
+.reader .page-word-item strong{font-size:14px}
+}
+@media (orientation:landscape) and (min-width:600px){.reader .page-word-item .page-word-ph{white-space:normal;overflow:visible;text-overflow:clip}}
