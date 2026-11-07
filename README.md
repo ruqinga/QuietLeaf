@@ -34,6 +34,9 @@ quietleaf/
 ├── styles.css                 响应式排版；纵向底部词典、横向左栏词典
 ├── app.js                     EPUB/PDF、书架、词典、笔记、收藏、统计与备份
 ├── zip.js                     EPUB ZIP 解包（随项目离线提供）
+├── dict.js                    离线英汉词典：下载、存入 IndexedDB、查词与词形还原
+├── dict/                      离线词典数据（en-zh.json、version.json、ECDICT 许可证）
+├── tools/build_dict.py        从 ECDICT 生成 dict/ 的脚本
 ├── sw.js                      PWA 离线静态资源缓存 (quietleaf-v3.1，联网优先、离线回退)
 ├── manifest.webmanifest       PWA 安装元数据
 ├── icons/                     主屏幕图标
@@ -43,13 +46,16 @@ quietleaf/
 
 **数据：**
 - IndexedDB 数据库 `quietleaf-library`、对象仓库 `books`：Blob 格式原文件、封面、书名、进度、注释、生词、分组。
+- IndexedDB 数据库 `quietleaf-dict`：离线词典（首次联网打开时自动下载约 1.4 MB，之后只在 `dict/version.json` 变化时更新）。
 - localStorage：`quietleaf-prefs`（阅读+词典偏好）、`quietleaf-shelf-mode`（视图）、`quietleaf-groups-v3`（分组名）、`quietleaf-favorites-v3`（网址）、阅读时长和阅读日期。
 - PWA 静态文件由 Service Worker 缓存。**缓存应用外壳不等于缓存在线释义或 Google TTS**。
 
 **词典细节与局限：**
 - 阅读页使用多栏 CSS 分页，每次翻页提取可见文字中的英文单词。
-- 内置一小组离线英汉释义，并按常见词过滤、单词长度等**启发式规则**选出候选难词，非标准 CET/IELTS/GRE 分级词典；`我的 → 词典偏好`中的档位控制筛选强度，不能代表考试词表精度。
-- 对内置词表之外的单词，先显示「点击查看在线释义」，点击正文单词后使用免费的 dictionaryapi.dev 英英词典（联网）。中译按钮跳转 Google 翻译网页。离线时未缓存的单词可能没有释义。
+- **离线英汉词典**：来自 [ECDICT](https://github.com/skywind3000/ECDICT)（MIT 许可）的精简版，约 4.5 万词，另有约 3.6 万个变形（went→go、meandered→meander）指向原形。每词保留音标、最多三行中文释义和难度等级 1–5（中学 / CET-4 / CET-6·考研 / 雅思·托福 / GRE·罕见词，取考试标签与词频的较低者）。
+- **本页难词**按难度等级筛选：「基础」显示等级 ≥3，「中级」≥4，「高级」只显示 5；同一单词的不同变形合并为一个。词典里没有的词（多为人名地名）不进入候选。词典未下载完成前，回退到旧的按单词长度估计。
+- **点词查询**先查离线词典（自动还原词形），查不到才联网查 dictionaryapi.dev 英英词典。「我的 → 词典偏好」底部显示词典状态，可手动重新下载。
+- **更新词典**：下载 `ecdict.csv` 后运行 `python3 tools/build_dict.py ecdict.csv`，并把脚本中的 `VERSION` 加一，提交 `dict/` 即可；用户联网打开 App 时会自动更新。
 - 当前页可见文字抽取在复杂 EPUB（多层标签、脚注、特殊分栏、图片）上可能不准确，少数情况下翻页后词表可能包含相邻栏的内容。
 - 默认紧凑词典只显示一个候选词；即使展开后关闭，下次新书的默认值仍为紧凑模式。词表最多显示 5 / 8 / 30 个（“全部”设为最多 30 个以保护性能）。
 
