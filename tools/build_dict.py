@@ -14,12 +14,13 @@ Level 1-5 is the approximate difficulty: 1 = middle/high school, 2 = CET-4,
 """
 import csv, hashlib, json, os, re, sys
 
-VERSION = 1
+VERSION = 2
 MAX_RANK = 60000          # keep words within this frequency rank (BNC / COCA)
 MAX_LINES = 3             # translation lines kept per word
 MAX_CHARS = 90            # translation length cap
 TAG_LEVEL = {'zk': 1, 'gk': 1, 'cet4': 2, 'cet6': 3, 'ky': 3, 'ielts': 4, 'toefl': 4, 'gre': 5}
-WORD_RE = re.compile(r"^[a-z](?:[a-z'-]*[a-z])?$")
+WORD_RE = re.compile(r"^[a-z](?:[a-z-]*[a-z])?$")   # no contractions (don't, he's …)
+COLLINS_LEVEL = {5: 1, 4: 2, 3: 3, 2: 4, 1: 4}
 
 
 def rank_of(row):
@@ -59,7 +60,10 @@ def main(src, out_dir):
             keep = tags or (row['collins'] not in ('', '0')) or row['oxford'] == '1' or (0 < rank <= MAX_RANK)
             if not keep:
                 continue
-            level = min([TAG_LEVEL[t] for t in tags if t in TAG_LEVEL] + [freq_level(rank)])
+            collins = int(row['collins']) if row['collins'].isdigit() else 0
+            level = min([TAG_LEVEL[t] for t in tags if t in TAG_LEVEL] + [freq_level(rank)]
+                        + ([COLLINS_LEVEL[collins]] if collins in COLLINS_LEVEL else [])
+                        + ([2] if row['oxford'] == '1' else []))
             phon = row['phonetic'].replace('ә', 'ə').strip()
             words[w] = [phon, short_translation(row['translation']), level]
             exchanges[w] = row['exchange']
@@ -73,6 +77,11 @@ def main(src, out_dir):
             if kind in ('p', 'd', 'i', '3', 's') and form != lemma and form in words and lemma in words \
                     and not tagged.get(form) and not has_own_inflections(form, exchanges.get(form, '')):
                 del words[form]
+    # A form is never harder than its base word: women -> woman, children -> child.
+    for w, ex in exchanges.items():
+        base = next((p[2:].strip().lower() for p in ex.split('/') if p.startswith('0:')), None)
+        if w in words and base in words and base != w:
+            words[w][2] = min(words[w][2], words[base][2])
     forms = {}
     for lemma, ex in exchanges.items():
         for part in ex.split('/'):

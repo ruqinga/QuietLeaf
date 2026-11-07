@@ -13,3 +13,30 @@ body[data-reader-theme="sepia"]{--reader-bg:#ece3ce;--reader-ink:#554b3b}body[da
 .section-head .actions{display:flex;align-items:center;gap:10px}
 .dict-status{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;color:var(--muted);padding-top:4px}
 .dict-status button{border:1px solid var(--border);background:transparent;border-radius:6px;padding:5px 10px;font-size:11px;color:var(--muted);flex:none}
+
+/* v3.3 · immersive reader: header/footer appear on centre tap */
+.reader{padding-top:env(safe-area-inset-top)}
+.reader .reader-header{position:absolute;top:0;left:0;right:0;z-index:40;background:var(--reader-bg);box-shadow:0 6px 20px #0000000f;transform:translateY(-100%);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .22s ease}
+.reader .reader-footer{position:absolute;left:0;right:0;bottom:0;z-index:40;box-shadow:0 -6px 20px #0000000f;transform:translateY(100%);opacity:0;pointer-events:none;transition:transform .22s ease,opacity .22s ease}
+.reader.chrome-on .reader-header,.reader.chrome-on .reader-footer{transform:none;opacity:1;pointer-events:auto}
+.reader .chapter-area{overflow:hidden!important;scroll-snap-type:none!important;touch-action:pan-y pinch-zoom}
+.reader .chapter-content{padding-top:22px!important}
+.page-word-ph{font-style:normal;font-size:11px;color:var(--muted);margin:0 6px 0 4px;white-space:nowrap}
+.word-phonetic{font-size:12px;color:var(--muted);margin-left:6px}
+.storage-info{display:grid;gap:0;background:#fffefa;border:1px solid var(--border);border-radius:14px;padding:4px 16px}
+.storage-info div{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--border);font-size:12px}
+.storage-info div:last-child{border-bottom:0}
+.storage-info span{color:var(--muted);flex:none}
+.storage-info strong{font-weight:500;text-align:right;overflow-wrap:anywhere}
+.storage-note{margin:10px 2px 16px}
+@media(orientation:landscape) and (min-width:600px){
+.reader{grid-template-rows:minmax(0,1fr)}
+.reader .chapter-area,.reader .pdf-area,.reader .word-card{grid-row:1}
+.reader .reader-header{height:calc(50px + env(safe-area-inset-top))}
+}
+.reader .pdf-area{padding-top:calc(60px + env(safe-area-inset-top));padding-bottom:calc(52px + env(safe-area-inset-bottom))}
+.reader .page-word-item{display:grid;grid-template-columns:auto 1fr;align-items:baseline;column-gap:0;row-gap:3px}
+.reader .page-word-item strong{grid-column:1}
+.reader .page-word-item .page-word-ph{grid-column:2;margin:0 0 0 8px;overflow:hidden;text-overflow:ellipsis}
+.reader .page-word-item span{grid-column:1/3;max-width:none;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@media not ((orientation:landscape) and (min-width:600px)){.reader.chrome-on .word-card{visibility:hidden}}
