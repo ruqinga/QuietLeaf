@@ -1,0 +1,9 @@
+.DS_Store
+__MACOSX/
+Thumbs.db
+node_modules/
+.env
+.env.*
+.wrangler/
+*.log
+quietleaf-backup-*.json
