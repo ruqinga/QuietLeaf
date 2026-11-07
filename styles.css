@@ -141,3 +141,17 @@ body[data-reader-theme="sepia"]{--reader-bg:#ece3ce;--reader-ink:#554b3b}body[da
 .page-word-list{grid-template-columns:minmax(0,1fr)}
 .reader .page-word-item{min-width:0}
 .reader .word-card{overflow-x:hidden}
+
+/* v3.10 · scheduled backups */
+.backup-settings{display:grid;gap:10px;background:#fffefa;border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:12px;font-size:13px}
+.backup-days{display:flex;align-items:center;gap:8px;color:var(--ink)}
+.backup-days input{width:70px;padding:8px 10px;border-radius:9px;border:1px solid var(--border);background:#fff;font:inherit;font-size:15px;text-align:center}
+.backup-days input:disabled{opacity:.45}
+.backup-dest{display:flex;justify-content:space-between;gap:12px;font-size:12px}.backup-dest span{color:var(--muted)}.backup-dest strong{font-weight:500;text-align:right}
+.backup-dir-actions{display:flex;gap:8px}.backup-dir-actions button{border:1px solid var(--border);background:transparent;border-radius:8px;padding:7px 12px;font-size:12px;color:var(--accent)}
+.backup-settings .field-note{margin:0}
+.backup-banner{display:flex;align-items:center;gap:10px;margin:0 0 18px;padding:11px 12px 11px 15px;border-radius:12px;background:#e9ede3;color:#4b5a42;font-size:13px}
+.backup-banner span{flex:1;min-width:0}
+.backup-banner button{border:0;border-radius:8px;padding:7px 12px;font-size:12px;background:transparent;color:#66775d}
+.backup-banner #backupNow{background:#6b7a60;color:#fff}
+.backup-banner #backupNow:disabled{opacity:.6}

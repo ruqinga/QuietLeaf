@@ -84,6 +84,7 @@ The 「收藏」 (Favorites) tab keeps links you use often, such as dictionary s
 - **Dictionary preferences**: level, list size, offline dictionary status, and a 「重新下载」 (re-download) button.
 - **数据与阅读** (Data & reading), folded until you tap it:
   - where your data is stored, how much space it uses, and when you last backed up;
+  - scheduled backups: on/off, days between backups, destination;
   - text, theme and speech settings;
   - full backup export and restore.
 
@@ -95,7 +96,10 @@ The 「收藏」 (Favorites) tab keeps links you use often, such as dictionary s
   - delete the home-screen icon;
   - clear this site's data under Settings → Safari → Advanced → Website Data;
   - open the reader from a different address.
-- **Back up regularly**: 我的 → 数据与阅读 → 「导出完整数据备份」, then save the file to the Files app or iCloud Drive. To move to a new phone, use 「恢复数据备份」 (restore).
+- **Scheduled backups**: under 我的 → 数据与阅读, turn on 「定期备份」 and type how many days between backups (7 by default).
+  - **iPhone**: iOS doesn't let a web page pick a folder or write files in the background. When a backup is due, opening the app shows a bar at the top of the shelf: 「已 N 天没有备份 · 立即备份」 ("N days since last backup · Back up now"). Tap it → Save to Files → pick a folder, e.g. iCloud Drive. iOS remembers the last place you used. 「稍后」 reminds you again tomorrow.
+  - **Chrome / Edge on a computer**: tap 「选择备份文件夹」 to pick a folder. Due backups are then written there automatically when you open the page.
+  - You can also export at any time with 「立即导出完整数据备份」, and use 「恢复数据备份」 to restore on a new phone.
 
 ## FAQ
 
