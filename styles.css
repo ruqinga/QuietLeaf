@@ -73,3 +73,11 @@ body[data-reader-theme="sepia"]{--reader-bg:#ece3ce;--reader-ink:#554b3b}body[da
 .reader #wordClose{display:none}
 .reader .word-card:not(.expanded){height:calc(66px + env(safe-area-inset-bottom));overflow:hidden}
 }
+
+/* v3.7 · portrait collapsed dock: word, phonetic and meaning on one line */
+@media not ((orientation:landscape) and (min-width:600px)){
+.reader .dock-compact>div{display:flex;align-items:baseline;gap:8px;white-space:nowrap;overflow:hidden}
+.reader .dock-compact .word-head{flex:none;font-size:16px;margin:0}
+.reader .dock-compact .word-phonetic{flex:none;margin:0;font-size:12px}
+.reader .dock-compact .word-meaning,.reader .word-card.expanded .dock-compact .word-meaning{flex:1 1 auto;min-width:0;margin:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
