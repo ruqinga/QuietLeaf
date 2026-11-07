@@ -40,3 +40,12 @@ body[data-reader-theme="sepia"]{--reader-bg:#ece3ce;--reader-ink:#554b3b}body[da
 .reader .page-word-item .page-word-ph{grid-column:2;margin:0 0 0 8px;overflow:hidden;text-overflow:ellipsis}
 .reader .page-word-item span{grid-column:1/3;max-width:none;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 @media not ((orientation:landscape) and (min-width:600px)){.reader.chrome-on .word-card{visibility:hidden}}
+
+/* v3.4 · dock overlays a reserved strip so showing/expanding it never reflows the page */
+@media not ((orientation:landscape) and (min-width:600px)){
+.reader{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+.reader .word-card{position:absolute;left:0;right:0;bottom:0;z-index:30;max-height:62vh;overflow:auto}
+.reader .word-card .word-meaning{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reader .word-card.expanded .dock-compact .word-meaning{white-space:normal}
+}
+@media not ((orientation:landscape) and (min-width:600px)){.reader .pdf-area{padding-bottom:0}}
