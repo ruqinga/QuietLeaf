@@ -171,3 +171,4 @@ mark.highlight-mark mark.highlight-mark{background:transparent}
 mark.highlight-mark[data-has-thought]{text-decoration:underline dotted #8a7a4a;text-underline-offset:3px}
 body[data-reader-theme=night] mark.highlight-mark{background:rgba(243,207,94,.28)}
 #speakPageBtn svg,#wordVoice svg{display:block}
+#selOverlay{position:fixed;inset:0;pointer-events:none;z-index:25}#selOverlay div{position:fixed;background:rgba(0,122,255,.26);border-radius:2px}
