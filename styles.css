@@ -51,7 +51,7 @@ body[data-reader-theme="sepia"]{--reader-bg:#ece3ce;--reader-ink:#554b3b}body[da
 @media not ((orientation:landscape) and (min-width:600px)){.reader .pdf-area{padding-bottom:0}}
 
 /* v3.5 · word list layouts */
-.reader .chapter-content{will-change:transform;backface-visibility:hidden}
+.reader .chapter-content.sliding{will-change:transform}
 @media not ((orientation:landscape) and (min-width:600px)){
 .reader .page-word-item{display:flex;align-items:baseline;gap:8px;padding:11px 12px;white-space:nowrap}
 .reader .page-word-item strong{flex:none;font-size:15px;font-weight:600}
