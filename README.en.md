@@ -50,13 +50,16 @@ When you turn to a page of an English book, the reader picks out the harder word
   - Tap ☆ to save it to the word book. The star turns solid ★, and tapping it again removes the word.
 - Inflected forms are matched to their base word (meandered → meander).
 
-You choose what counts as "hard" in **我的 → 词典偏好** (Me → Dictionary preferences):
+Choose which words are listed under **我的 → 词典偏好 → 本页难词词表** (Me → Dictionary preferences → Word list):
 
-| Level | Shows |
+| Word list | Shows |
 |---|---|
-| 基础 · CET-4 (basic) | CET-6 level and above |
-| 中级 · CET-6 (intermediate) | IELTS / TOEFL level and above |
-| 高级 · IELTS/GRE (advanced) | GRE and rare words only |
+| 雅思 IELTS (default) | Words on the page from the IELTS list, minus middle/high-school basics (about 3,300 words) |
+| 雅思 IELTS · 跳过四级词 | The same, also skipping CET-4 words (about 2,300 words) |
+| TOEFL / GRE / CET-6 / CET-4 / 考研 (postgraduate exam) | Words from that exam list, minus school basics |
+| 按难度 (by difficulty): basic / intermediate / advanced | The older difficulty-based picking |
+
+The exam tags come from ECDICT.
 
 You can also set how many words the expanded portrait list shows, and whether to hide words you have marked as mastered.
 

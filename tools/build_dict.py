@@ -8,16 +8,18 @@ Usage:
     python3 tools/build_dict.py ecdict.csv
 
 Writes dict/en-zh.json and dict/version.json. Output format:
-    {"v": <version>, "w": {word: [phonetic, translation, level]}, "f": {inflected_form: lemma}}
+    {"v": <version>, "w": {word: [phonetic, translation, level, exam_bits]}, "f": {inflected_form: lemma}}
+exam_bits: zk=1 gk=2 cet4=4 cet6=8 ky=16 ielts=32 toefl=64 gre=128 (ECDICT tags).
 Level 1-5 is the approximate difficulty: 1 = middle/high school, 2 = CET-4,
 3 = CET-6 / postgraduate exam, 4 = IELTS / TOEFL, 5 = GRE or rare.
 """
 import csv, hashlib, json, os, re, sys
 
-VERSION = 2
+VERSION = 3
 MAX_RANK = 60000          # keep words within this frequency rank (BNC / COCA)
 MAX_LINES = 3             # translation lines kept per word
 MAX_CHARS = 90            # translation length cap
+TAG_BITS = {'zk': 1, 'gk': 2, 'cet4': 4, 'cet6': 8, 'ky': 16, 'ielts': 32, 'toefl': 64, 'gre': 128}
 TAG_LEVEL = {'zk': 1, 'gk': 1, 'cet4': 2, 'cet6': 3, 'ky': 3, 'ielts': 4, 'toefl': 4, 'gre': 5}
 WORD_RE = re.compile(r"^[a-z](?:[a-z-]*[a-z])?$")   # no contractions (don't, he's …)
 COLLINS_LEVEL = {5: 1, 4: 2, 3: 3, 2: 4, 1: 4}
@@ -65,7 +67,8 @@ def main(src, out_dir):
                         + ([COLLINS_LEVEL[collins]] if collins in COLLINS_LEVEL else [])
                         + ([2] if row['oxford'] == '1' else []))
             phon = row['phonetic'].replace('ә', 'ə').strip()
-            words[w] = [phon, short_translation(row['translation']), level]
+            bits = sum(TAG_BITS[t] for t in set(tags) if t in TAG_BITS)
+            words[w] = [phon, short_translation(row['translation']), level, bits]
             exchanges[w] = row['exchange']
             tagged[w] = bool(tags) or row['oxford'] == '1'
     # Inflected forms that also have their own minor entry (e.g. "contemplated" -> "a. 预期的")

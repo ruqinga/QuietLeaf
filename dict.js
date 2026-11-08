@@ -97,8 +97,8 @@ const QLDict = (() => {
   function get(word) {
     const lemma = lemmaOf(word);
     if (!lemma) return null;
-    const [phonetic, meaning, level] = data.w[lemma];
-    return {word: word.toLowerCase(), lemma, phonetic, meaning, level};
+    const [phonetic, meaning, level, bits] = data.w[lemma];
+    return {word: word.toLowerCase(), lemma, phonetic, meaning, level, bits: bits ?? null};
   }
 
   return {

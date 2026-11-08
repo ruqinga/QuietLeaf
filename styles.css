@@ -170,3 +170,4 @@ mark.highlight-mark[data-note-color=pink]{background:rgba(238,154,168,.42)}
 mark.highlight-mark mark.highlight-mark{background:transparent}
 mark.highlight-mark[data-has-thought]{text-decoration:underline dotted #8a7a4a;text-underline-offset:3px}
 body[data-reader-theme=night] mark.highlight-mark{background:rgba(243,207,94,.28)}
+#speakPageBtn svg,#wordVoice svg{display:block}
