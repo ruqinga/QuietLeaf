@@ -208,3 +208,13 @@ body[data-reader-theme=night] mark.highlight-mark{background:rgba(243,207,94,.28
 .setting-hint{font-size:12px;color:var(--muted);margin:14px 0 4px}
 .voice-settings select,.voice-settings input{width:100%;padding:12px 14px;border-radius:11px;border:1px solid var(--border);background:#fffefa;color:var(--ink);font:inherit;font-size:14px}
 .voice-settings .google-tts-config{display:grid;gap:8px}.voice-settings .google-tts-config.hidden{display:none}.voice-settings .google-tts-config p{font-size:11.5px;color:var(--muted);line-height:1.6;margin:4px 0 0}
+
+/* v3.18 · app-drawn touch selection */
+#selHandles{position:fixed;inset:0;pointer-events:none;z-index:26}
+#selHandles.hidden{display:none}
+.sel-handle{position:fixed;width:30px;pointer-events:auto;touch-action:none}
+.sel-handle i{position:absolute;left:14px;top:0;bottom:0;width:2px;background:#2f7bf6}
+.sel-handle i::after{content:'';position:absolute;left:-5px;width:12px;height:12px;border-radius:50%;background:#2f7bf6}
+.sel-handle.start i::after{top:-10px}
+.sel-handle.end i::after{bottom:-10px}
+#selOverlay div{background:rgba(47,123,246,.24)}
