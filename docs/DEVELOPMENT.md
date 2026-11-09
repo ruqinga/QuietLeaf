@@ -36,6 +36,8 @@ quietleaf/
 ├── styles.css                 响应式排版；纵向底部词典、横向左栏词典
 ├── app.js                     EPUB/PDF、书架、词典、笔记、收藏、统计与备份
 ├── zip.js                     EPUB ZIP 解包（随项目离线提供）
+├── ai.js                      AI 问书：Claude（vendor/ 内打包的 Anthropic 官方 SDK）与 OpenAI 兼容接口（GPT、DeepSeek 等），流式输出
+├── vendor/anthropic-sdk.mjs   @anthropic-ai/sdk 1.3.0 的浏览器 ESM 打包（esbuild），仅在使用 Claude 时按需加载
 ├── dict.js                    离线英汉词典：下载、存入 IndexedDB、查词与词形还原
 ├── dict/                      离线词典数据（en-zh.json、version.json、ECDICT 许可证）
 ├── tools/build_dict.py        从 ECDICT 生成 dict/ 的脚本

@@ -33,10 +33,17 @@ A private e-reader you install on your iPhone home screen, built for reading Eng
 | Tap the left / right side, or swipe | Previous / next page |
 | Tap the middle | Show / hide the menu: back, notes, read aloud, contents, text settings, progress |
 | Tap an English word | Show its meaning and phonetic in the word panel |
-| Long-press to select text | A toolbar appears next to it: tap a colour dot to highlight (yellow / green / blue / pink), or add a note, copy, look up, read aloud |
+| Long-press to select text | A toolbar appears next to it: tap a colour dot to highlight (yellow / green / blue / pink), or add a note, copy, ask AI, look up, read aloud |
 | Tap highlighted text | Change colour, copy, edit the note, read aloud, delete |
 
 The **Aa** button sets the theme (paper / sepia / night), font size, line spacing, font and speech rate. Your reading position is saved automatically.
+
+**Read-aloud voice**: the iPhone system voice is the default; it's free and works offline. For more natural voices, choose **Google Cloud TTS** under Aa → 语音引擎 (voice engine):
+
+- **API Key 直连 (direct API key)**: paste your own Google Cloud API key. English and Chinese voices are optional (e.g. `en-US-Neural2-F`). Tap 「试听」 to preview.
+- **自建代理 (your own proxy)**: if you'd rather not keep the key on the phone, deploy `google-tts-worker.js` from this repo and enter its URL.
+
+Google TTS requires enabling the Text-to-Speech API and billing in Google Cloud; usage beyond the free tier is charged. Restrict the key to the Text-to-Speech API. The key stays on this device and is never included in backups.
 
 ## Words on this page
 
@@ -62,6 +69,33 @@ Choose which words are listed under **我的 → 词典偏好 → 本页难词�
 The exam tags come from ECDICT.
 
 You can also set how many words the expanded portrait list shows, and whether to hide words you have marked as mastered.
+
+## AI reading assistant (AI 问书)
+
+Connect your own AI account and ask questions while you read.
+
+**Setup**: under **我的 → AI 助手** (Me → AI assistant), choose a provider, paste your own API key and tap 「测试连接」 (test connection).
+
+| Provider | Default model | Notes |
+|---|---|---|
+| Claude (Anthropic) | `claude-opus-5-5` | Uses Anthropic's official SDK |
+| OpenAI (GPT) | `gpt-4o-mini` | Model name can be changed |
+| DeepSeek | `deepseek-chat` | Endpoint pre-filled |
+| Other (OpenAI-compatible) | your choice | Enter a base URL and model; works with services that use the OpenAI format |
+
+You can change the model to any model your account can use. Each provider keeps its own key, so you don't have to re-enter it when you switch.
+
+**Three ways in**:
+
+- **Select text → 问 AI**: explain this passage. Use the quick prompts (explain, translate into Chinese, break down the sentence, background) or type your own question.
+- **「✦ 问 AI」 in the word panel**: what this word means here, how it's used, and how it differs from similar words.
+- **✦ in the top menu**: questions about the book, such as summarising this page, what the chapter is about so far, or who the characters are.
+
+Answers appear as they are written, and you can keep asking follow-up questions in the same conversation. Tap 「停止」 to stop an answer. For a selected passage, 「存为想法」 saves the answer as a note together with the quote.
+
+The assistant is told the book title, author, current chapter and the passage you selected, and is asked not to spoil anything you haven't read yet.
+
+**Privacy and cost**: your key stays on this device and is never included in backups. When you ask, the selected text, its paragraph, the book title and chapter go straight from your phone to the provider you chose, and you pay that provider's prices.
 
 ## Notes & word book
 
