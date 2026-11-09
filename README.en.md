@@ -38,7 +38,7 @@ A private e-reader you install on your iPhone home screen, built for reading Eng
 
 The **Aa** button sets the theme (paper / sepia / night), font size, line spacing, font and speech rate. Your reading position is saved automatically.
 
-**Read-aloud voice**: the iPhone system voice is the default; it's free and works offline. For more natural voices, choose **Google Cloud TTS** under Aa → 语音引擎 (voice engine):
+**Read-aloud voice**: the iPhone system voice is the default; it's free and works offline. For more natural voices, choose **Google Cloud TTS** under **我的 → 朗读语音** (Me → Read-aloud voice):
 
 - **API Key 直连 (direct API key)**: paste your own Google Cloud API key. English and Chinese voices are optional (e.g. `en-US-Neural2-F`). Tap 「试听」 to preview.
 - **自建代理 (your own proxy)**: if you'd rather not keep the key on the phone, deploy `google-tts-worker.js` from this repo and enter its URL.
