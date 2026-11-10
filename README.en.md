@@ -33,7 +33,7 @@ A private e-reader you install on your iPhone home screen, built for reading Eng
 | Tap the left / right side, or swipe | Previous / next page |
 | Tap the middle | Show / hide the menu: back, notes, read aloud, contents, text settings, progress |
 | Tap an English word | Show its meaning and phonetic in the word panel |
-| Long-press text | Selects the word (keep sliding to extend, or drag the blue handles to adjust) and shows a toolbar: tap a colour dot to highlight (yellow / green / blue / pink), or add a note, copy, ask AI, look up, read aloud |
+| Long-press text | Selects the word (keep sliding to extend, or drag the blue handles to adjust) and shows a toolbar: tap a colour dot to highlight (yellow / green / blue / pink), or add a note, copy, ask AI, read aloud |
 | Tap highlighted text | Change colour, copy, edit the note, read aloud, delete |
 
 The **Aa** button sets the theme (paper / sepia / night), font size, line spacing, font and speech rate. Your reading position is saved automatically.
